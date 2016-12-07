@@ -44,7 +44,7 @@ public class Tpaga {
 
     public static boolean validateCreditCardData(CreditCardTpaga creditCard) {
         return TpagaTools.isValidCardNumber(creditCard.primaryAccountNumber.replaceAll("\\s+", ""))
-                && TpagaTools.isValidExpirationDate(creditCard.expirationYear, creditCard.expirationMonths)
+                && TpagaTools.isValidExpirationDate(creditCard.expirationYear, creditCard.expirationMonth)
                 && !creditCard.cvc.isEmpty()
                 && TpagaTools.isNameValid(creditCard.cardHolderName);
     }

@@ -7,7 +7,7 @@ public class CreditCardTpaga {
 
     public String primaryAccountNumber;
 
-    public String expirationMonths;
+    public String expirationMonth;
 
     public String expirationYear;
 
@@ -18,7 +18,7 @@ public class CreditCardTpaga {
     public static CreditCardTpaga create(String number, String year, String month, String cvv, String name) {
         CreditCardTpaga creditCardTpaga = new CreditCardTpaga();
         creditCardTpaga.primaryAccountNumber = number.replaceAll("\\s+", "");
-        creditCardTpaga.expirationMonths = month;
+        creditCardTpaga.expirationMonth = month;
         creditCardTpaga.expirationYear = year;
         creditCardTpaga.cvc = cvv;
         creditCardTpaga.cardHolderName = name;

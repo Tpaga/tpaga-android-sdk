@@ -217,8 +217,8 @@ public class AddCreditCardFragment extends Fragment implements AddCreditCardView
         if (creditCardTpaga.expirationYear != null && !creditCardTpaga.expirationYear.isEmpty()) {
             year.setText(creditCardTpaga.expirationYear);
         }
-        if (creditCardTpaga.expirationMonths != null && !creditCardTpaga.expirationMonths.isEmpty()) {
-            month.setText(creditCardTpaga.expirationMonths);
+        if (creditCardTpaga.expirationMonth != null && !creditCardTpaga.expirationMonth.isEmpty()) {
+            month.setText(creditCardTpaga.expirationMonth);
         }
         if (creditCardTpaga.cvc != null && !creditCardTpaga.cvc.isEmpty()) {
             cvv.setText(creditCardTpaga.cvc);
