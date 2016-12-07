@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="button_red" parent="Theme.AppCompat.Light"></style>
+
+    <style name="title_style"></style>
+
+    <style name="default_edit_text_style" parent="@style/Base.Widget.AppCompat.EditText"></style>
+</resources>

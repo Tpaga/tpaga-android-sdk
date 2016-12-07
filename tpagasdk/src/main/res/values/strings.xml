@@ -1,0 +1,20 @@
+<resources>
+    <string name="app_name">Tpaga Sdk</string>
+
+    <string name="create_account">Create account</string>
+    <string name="your_credit_card_title">Create account in credit card</string>
+    <string name="hint_cc_number">Number card</string>
+    <string name="hint_month">Month</string>
+    <string name="hint_year">Year</string>
+    <string name="hint_cvv">CVV</string>
+    <string name="hint_cc_name">Name in card</string>
+    <string name="scan_cc">Scan card</string>
+
+    <string name="fail_validate_cc">Verify card number</string>
+    <string name="fail_validate_month_cc">Verify month</string>
+    <string name="fail_validate_year_cc">Verify year</string>
+    <string name="fail_validate_cvc_cc">Verify cvv</string>
+    <string name="fail_validate_name_cc">Verify name in the card</string>
+    <string name="error_to_add_cc">Error agregando tarjeta de credito</string>
+    <string name="error_to_connect_with_server">Error conectando con el servidor</string>
+</resources>
