@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center_horizontal"
+    android:background="@android:color/white"
+    android:clickable="true"
+    android:gravity="center_horizontal"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/tv_cc_title"
+        style="@style/Tittle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:gravity="center_horizontal"
+        android:text="@string/your_credit_card_title" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <ImageButton
+            android:id="@+id/bt_scan_card"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/et_cc_number_til"
+            android:layout_alignParentRight="true"
+            android:layout_alignTop="@+id/et_cc_number_til"
+            android:background="@android:color/transparent"
+            android:src="@drawable/camera" />
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/et_cc_number_til"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_toLeftOf="@+id/bt_scan_card"
+            android:theme="@style/Base.TextInputLayout">
+
+            <EditText
+                android:id="@+id/et_cc_number"
+                style="@style/Base.EditText"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tv_cc_title"
+                android:layout_centerHorizontal="true"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginTop="20dp"
+                android:digits="0123456789 "
+                android:ems="10"
+                android:gravity="center"
+                android:hint="@string/hint_cc_number"
+                android:inputType="number"
+                android:maxLength="23"
+                android:singleLine="true" />
+        </android.support.design.widget.TextInputLayout>
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/expiration_date_til"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginRight="20dp"
+            android:layout_weight="1"
+            android:gravity="center_horizontal"
+            android:theme="@style/Base.TextInputLayout">
+
+            <EditText
+                android:id="@+id/expiration_date"
+                style="@style/Base.EditText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="mm/yyyy"
+                android:inputType="date"
+                android:singleLine="true" />
+        </android.support.design.widget.TextInputLayout>
+
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/et_cvv_number_til"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginRight="20dp"
+            android:layout_weight="1"
+            android:gravity="center_horizontal"
+            android:theme="@style/Base.TextInputLayout">
+
+            <EditText
+                android:id="@+id/et_cvv_number"
+                style="@style/Base.EditText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:digits="0123456789"
+                android:ems="10"
+                android:hint="@string/hint_cvv"
+                android:inputType="number"
+                android:maxLength="4"
+                android:singleLine="true" />
+        </android.support.design.widget.TextInputLayout>
+
+    </LinearLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/et_name_in_card_til"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/Base.TextInputLayout">
+
+        <EditText
+            android:id="@+id/et_name_in_card"
+            style="@style/Base.EditText"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/container_date_1"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="20dp"
+            android:ems="10"
+            android:gravity="center"
+            android:hint="@string/hint_cc_name"
+            android:inputType="textPersonName"
+            android:singleLine="true" />
+
+    </android.support.design.widget.TextInputLayout>
+
+    <Button
+        android:id="@+id/bt_add_cc_request"
+        style="@style/Base.Button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:text="@string/create_account" />
+
+
+</LinearLayout>

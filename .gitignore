@@ -1,0 +1,31 @@
+.DS_Store
+tpaga-sdk/.DS_Store
+
+# Build application files
+*.apk
+*.ap_
+
+# Files for the Dalvik VM
+*.dex
+
+# Java class files
+*.class
+
+# Generated files
+tpaga-sdk/bin/
+tpaga-sdk/gen/
+tpaga-sdk/javadoc/
+
+# Gradle files
+tpaga-sdk/.gradle/
+tpaga-sdk/build/
+tpaga-sdk/ignore.gradle
+
+# Local configuration file (sdk path, etc)
+tpaga-sdk/local.properties
+
+# Android Studio / IntelliJ
+tpaga-sdk/.idea/
+*.iml
+*.iws
+tpaga-sdk/out/
