@@ -92,11 +92,6 @@ public void showError(Throwable t) {
         ((TpagaException) t).getStatusCode();
     }
 }
-
-@Override
-public CreditCard getCreditCard() {
-    return mAddCreditCardFragment.getCC();
-}
 ```
 
 To customize AddCreditCardFragment you can overwrite the next styles
@@ -110,17 +105,11 @@ To customize AddCreditCardFragment you can overwrite the next styles
 
 Second option without AddCreditCardFragment
 
-- Implements `AddCreditCardView.UserActionsListener` and in the getCreditCard() return a new CreditCard with data in your view.
-```
-@Override
-public CreditCard getCreditCard() {
-    return CreditCard.create("number", "year", "month", "cvv", "name");
-}
-```
+- Implements `AddCreditCardView.UserActionsListener` and overwrite methods as show above.
 
-- Call `mAddCreditCardPresenter.tokenizeCreditCard();` to request card token
+- Call `Tpaga.tokenizeCreditCard(this, CreditCard.create("number", "year", "month", "cvv", "name"));` to request card token
 
-- Optionaly you must use `Tpaga.scanCard(this)` to start scan credit card intent and in `onActivityResult` method add the next lines. Where `Tpaga.onActivityResultScanCreditCard(data)` return a `CreditCardTpaga` object
+- Optionaly you must use `Tpaga.startScanCreditCard(this);` to start scan credit card intent and in `onActivityResult` method add the next lines. Where `Tpaga.onActivityResultScanCreditCard(data)` return a `CreditCard` object
 ```
 @Override
 protected void onActivityResult(int requestCode, int resultCode, Intent data) {
