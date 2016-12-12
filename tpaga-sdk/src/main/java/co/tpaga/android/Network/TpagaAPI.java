@@ -4,10 +4,11 @@ import java.io.IOException;
 import java.lang.annotation.Annotation;
 
 import co.tpaga.android.BuildConfig;
-import co.tpaga.android.Entities.CreditCardResponse;
 import co.tpaga.android.Entities.CreditCard;
+import co.tpaga.android.Entities.CreditCardResponse;
 import co.tpaga.android.Tools.GenericResponse;
 import co.tpaga.android.Tools.StatusResponse;
+import co.tpaga.android.Tpaga;
 import okhttp3.OkHttpClient;
 import okhttp3.ResponseBody;
 import okhttp3.logging.HttpLoggingInterceptor;
@@ -19,8 +20,6 @@ import retrofit2.http.POST;
 
 public class TpagaAPI {
 
-    public static final int SANDBOX = 1000;
-    public static final int PRODUCTION = 2000;
     protected static final String SANDBOX_TPAGA_API_HOST = "https://sandbox.tpaga.co/api/";
     protected static final String PRODUCTION_TPAGA_API_HOST = "https://api.tpaga.co/api/";
 
@@ -47,7 +46,7 @@ public class TpagaAPI {
         OkHttpClient client = httpClient.build();
 
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl((enviroment == PRODUCTION) ? PRODUCTION_TPAGA_API_HOST : SANDBOX_TPAGA_API_HOST)
+                .baseUrl((enviroment == Tpaga.PRODUCTION) ? PRODUCTION_TPAGA_API_HOST : SANDBOX_TPAGA_API_HOST)
                 .client(client)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();

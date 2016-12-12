@@ -1,6 +1,7 @@
 package co.tpaga.android.Network;
 
 import co.tpaga.android.BuildConfig;
+import co.tpaga.android.Tpaga;
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
@@ -33,12 +34,11 @@ public class MockService extends TpagaAPI {
         httpClient.addInterceptor(logging);
 
         httpClient.addInterceptor(new FakeInterceptor(this));
-//        httpClient.addInterceptor(new TPagaInterceptor(tpagaPublicApiKey));
 
         OkHttpClient client = httpClient.build();
 
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl((enviroment == PRODUCTION) ? PRODUCTION_TPAGA_API_HOST : SANDBOX_TPAGA_API_HOST)
+                .baseUrl((enviroment == Tpaga.PRODUCTION) ? PRODUCTION_TPAGA_API_HOST : SANDBOX_TPAGA_API_HOST)
                 .client(client)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();

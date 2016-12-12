@@ -19,6 +19,10 @@ import static com.google.common.base.Preconditions.checkNotNull;
 
 public class Tpaga {
 
+    /*to select environment*/
+    public static final int SANDBOX = 1000;
+    public static final int PRODUCTION = 2000;
+
     /*request code for scan card*/
     public static final int SCAN_CREDIT_CARD = 1126;
 
@@ -80,17 +84,17 @@ public class Tpaga {
         }
     }
 
-    public static void tokenizeCreditCard(AddCreditCardView.UserActionsListener userActionsListener) {
+    public static void tokenizeCreditCard(AddCreditCardView.UserActionsListener userActionsListener, CreditCard creditCard) {
         checkNotNull(tpagaApi, "Tpaga SDK has not been properly initialized. Please, read the documentation in https://bitbucket.org/tpaga/tpaga-android-sdk/overview");
         AddCreditCardPresenter mAddCreditCardPresenter = new AddCreditCardPresenter(userActionsListener, tpagaApi);
-        mAddCreditCardPresenter.tokenizeCreditCard();
+        mAddCreditCardPresenter.tokenizeCreditCard(creditCard);
     }
 
-    public static void validateAndTokenizeCreditCard(AddCreditCardView.UserActionsListener userActionsListener, AddCreditCardView.View view) {
+    public static void validateAndTokenizeCreditCard(AddCreditCardView.UserActionsListener userActionsListener, AddCreditCardView.View view, CreditCard creditCard) {
         checkNotNull(tpagaApi, "Tpaga SDK has not been properly initialized. Please, read the documentation in https://bitbucket.org/tpaga/tpaga-android-sdk/overview");
         AddCreditCardPresenter mAddCreditCardPresenter = new AddCreditCardPresenter(userActionsListener, tpagaApi);
         mAddCreditCardPresenter.addCreditCardView(view);
-        mAddCreditCardPresenter.onClickAddCC();
+        mAddCreditCardPresenter.onClickAddCC(creditCard);
     }
 
     public static GenericResponse errorResponse(ResponseBody responseBody) {

@@ -83,13 +83,12 @@ public class AddCreditCardFragment extends Fragment implements AddCreditCardView
         if (i == R.id.bt_scan_card) {
             Tpaga.startScanCreditCard(this);
         } else if (i == R.id.bt_add_cc_request) {
-            Tpaga.validateAndTokenizeCreditCard(mUserActionListener, this);
+            Tpaga.validateAndTokenizeCreditCard(mUserActionListener, this, getCreditCard());
         } else if (i == R.id.expiration_date) {
             expirationDatePickerDialog.show(getActivity().getFragmentManager(), ccExpirationDateTag);
         }
     }
 
-    @Override
     public CreditCard getCreditCard() {
         String month = "";
         String year = "";

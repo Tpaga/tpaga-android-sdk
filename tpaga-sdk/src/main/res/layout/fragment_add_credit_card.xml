@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_gravity="center_horizontal"
-    android:background="@android:color/white"
+    android:background="@android:color/transparent"
     android:clickable="true"
     android:gravity="center_horizontal"
     android:orientation="vertical">
@@ -13,7 +13,6 @@
         style="@style/Tittle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
         android:gravity="center_horizontal"
         android:text="@string/your_credit_card_title" />
 
@@ -21,6 +20,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
+        android:layout_marginLeft="@dimen/fragment_add_cc_margin"
+        android:layout_marginRight="@dimen/fragment_add_cc_margin"
+        android:layout_marginTop="@dimen/fragment_add_cc_margin"
         android:gravity="center"
         android:orientation="vertical">
 
@@ -48,9 +50,6 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/tv_cc_title"
                 android:layout_centerHorizontal="true"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
-                android:layout_marginTop="20dp"
                 android:digits="0123456789 "
                 android:ems="10"
                 android:gravity="center"
@@ -65,6 +64,8 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/fragment_add_cc_margin"
+        android:layout_marginRight="20dp"
         android:gravity="center"
         android:orientation="horizontal">
 
@@ -74,7 +75,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:layout_marginRight="20dp"
+            android:layout_marginRight="10dp"
             android:layout_weight="1"
             android:gravity="center_horizontal"
             android:theme="@style/Base.TextInputLayout">
@@ -96,7 +97,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:layout_marginRight="20dp"
             android:layout_weight="1"
             android:gravity="center_horizontal"
             android:theme="@style/Base.TextInputLayout">
@@ -120,6 +120,8 @@
         android:id="@+id/et_name_in_card_til"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/fragment_add_cc_margin"
+        android:layout_marginRight="@dimen/fragment_add_cc_margin"
         android:theme="@style/Base.TextInputLayout">
 
         <EditText
@@ -128,9 +130,6 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/container_date_1"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
-            android:layout_marginTop="20dp"
             android:ems="10"
             android:gravity="center"
             android:hint="@string/hint_cc_name"

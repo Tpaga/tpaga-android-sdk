@@ -2,6 +2,7 @@ package co.tpaga.android.FragmentCreditCard;
 
 import android.support.annotation.NonNull;
 
+import co.tpaga.android.Entities.CreditCard;
 import co.tpaga.android.Entities.CreditCardResponse;
 import co.tpaga.android.Network.TpagaAPI;
 import co.tpaga.android.Tools.TpagaException;
@@ -30,16 +31,16 @@ public class AddCreditCardPresenter {
         this.view = checkNotNull(view);
     }
 
-    public void onClickAddCC() {
+    public void onClickAddCC(CreditCard creditCard) {
         if (!view.validateFieldsCC()) {
             view.showValidateFieldsError();
             return;
         }
-        tokenizeCreditCard();
+        tokenizeCreditCard(creditCard);
     }
 
-    public void tokenizeCreditCard() {
-        tpagaApi.addCreditCard(checkNotNull(userActionsListener.getCreditCard(), "Credit card data cannot be null")).enqueue(new Callback<CreditCardResponse>() {
+    public void tokenizeCreditCard(CreditCard creditCard) {
+        tpagaApi.addCreditCard(checkNotNull(creditCard, "Credit card data cannot be null")).enqueue(new Callback<CreditCardResponse>() {
             @Override
             public void onResponse(Call<CreditCardResponse> call, Response<CreditCardResponse> response) {
                 if (response.isSuccessful()) {
