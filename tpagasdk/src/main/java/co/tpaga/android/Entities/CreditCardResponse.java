@@ -1,13 +1,10 @@
-package co.tpaga.tpagasdk.Entities;
+package co.tpaga.android.Entities;
 
 import java.util.ArrayList;
 
-/**
- * Created by TPaga on 8/30/16.
- */
-public class CreditCardResponseTpaga {
+public class CreditCardResponse {
 
-    String token;
+    private String token;
 
     boolean used;
 
@@ -20,8 +17,7 @@ public class CreditCardResponseTpaga {
         public String message;
     }
 
-    public CreditCardWallet toCreditCardWallet() {
-        return CreditCardWallet.create(token);
+    public String getToken() {
+        return token;
     }
-
 }

@@ -1,4 +1,4 @@
-package co.tpaga.tpagasdk;
+package co.tpaga.android;
 
 import org.junit.Test;
 

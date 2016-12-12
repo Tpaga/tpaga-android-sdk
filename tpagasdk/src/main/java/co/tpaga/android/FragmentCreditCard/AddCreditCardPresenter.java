@@ -1,11 +1,11 @@
-package co.tpaga.tpagasdk.FragmentCreditCard;
+package co.tpaga.android.FragmentCreditCard;
 
 import android.support.annotation.NonNull;
 
-import co.tpaga.tpagasdk.Entities.CreditCardResponseTpaga;
-import co.tpaga.tpagasdk.Network.TpagaAPI;
-import co.tpaga.tpagasdk.Tools.TpagaException;
-import co.tpaga.tpagasdk.Tpaga;
+import co.tpaga.android.Entities.CreditCardResponse;
+import co.tpaga.android.Network.TpagaAPI;
+import co.tpaga.android.Tools.TpagaException;
+import co.tpaga.android.Tpaga;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -32,18 +32,18 @@ public class AddCreditCardPresenter {
 
     public void onClickAddCC() {
         if (!view.validateFieldsCC()) {
-            view.showToastMsg();
+            view.showValidateFieldsError();
             return;
         }
         tokenizeCreditCard();
     }
 
     public void tokenizeCreditCard() {
-        tpagaApi.addCreditCard(checkNotNull(userActionsListener.getCreditCard(), "Credit card data cannot be null")).enqueue(new Callback<CreditCardResponseTpaga>() {
+        tpagaApi.addCreditCard(checkNotNull(userActionsListener.getCreditCard(), "Credit card data cannot be null")).enqueue(new Callback<CreditCardResponse>() {
             @Override
-            public void onResponse(Call<CreditCardResponseTpaga> call, Response<CreditCardResponseTpaga> response) {
+            public void onResponse(Call<CreditCardResponse> call, Response<CreditCardResponse> response) {
                 if (response.isSuccessful()) {
-                    userActionsListener.onResponseSuccessfulOfAddCreditCard(response.body().toCreditCardWallet());
+                    userActionsListener.onResponseSuccessTokenizeCreditCard(response.body().getToken());
                     return;
                 }
                 if (response.code() >= 500) {
@@ -54,7 +54,7 @@ public class AddCreditCardPresenter {
             }
 
             @Override
-            public void onFailure(Call<CreditCardResponseTpaga> call, Throwable t) {
+            public void onFailure(Call<CreditCardResponse> call, Throwable t) {
                 userActionsListener.showError(t);
             }
         });

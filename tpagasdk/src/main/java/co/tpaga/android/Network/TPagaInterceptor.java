@@ -1,4 +1,4 @@
-package co.tpaga.tpagasdk.Network;
+package co.tpaga.android.Network;
 
 import android.util.Base64;
 

@@ -2,12 +2,12 @@ apply plugin: 'com.android.library'
 apply plugin: 'maven'
 
 android {
-    compileSdkVersion 24
-    buildToolsVersion "24.0.1"
+    compileSdkVersion 25
+    buildToolsVersion "25.0.1"
 
     defaultConfig {
         minSdkVersion 15
-        targetSdkVersion 24
+        targetSdkVersion 25
         versionCode 9
         versionName "1.0.9"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
@@ -26,13 +26,17 @@ android {
 
 dependencies {
     // App's dependencies, including test
-    compile 'com.android.support:appcompat-v7:24.2.1'
-    compile "com.google.guava:guava:19.0"
+    compile 'com.android.support:appcompat-v7:25.0.1'
+    compile 'com.google.guava:guava:19.0'
 
     //Scan credit card
     compile 'io.card:android-sdk:5.4.0'
     //Validate credit card
-    compile 'commons-validator:commons-validator:1.5.1'
+//    compile 'commons-validator:commons-validator:1.5.1'
+
+    compile('commons-validator:commons-validator:1.5.1') {
+        exclude group: 'commons-logging', module: 'commons-logging'
+    }
     compile('com.squareup.retrofit2:retrofit:2.1.0') {
         exclude module: 'okhttp'
         compile 'com.squareup.okhttp3:okhttp:3.4.1'
@@ -45,7 +49,7 @@ dependencies {
 
     //material design
     compile 'com.weiwangcn.betterspinner:library-material:1.1.0'
-    compile "com.android.support:design:24.2.1"
+    compile "com.android.support:design:25.0.1"
 
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
@@ -58,4 +62,4 @@ dependencies {
     testCompile "org.powermock:powermock-api-mockito:1.6.5"
 }
 
-
+apply from: 'ignore.gradle'

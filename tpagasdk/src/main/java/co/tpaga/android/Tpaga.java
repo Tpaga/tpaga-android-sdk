@@ -1,18 +1,18 @@
-package co.tpaga.tpagasdk;
+package co.tpaga.android;
 
 
 import android.app.Activity;
 import android.content.Intent;
 import android.support.annotation.NonNull;
+import android.support.v4.app.Fragment;
 
-import co.tpaga.tpagasdk.Entities.CreditCardTpaga;
-import co.tpaga.tpagasdk.FragmentCreditCard.AddCreditCardPresenter;
-import co.tpaga.tpagasdk.FragmentCreditCard.AddCreditCardView;
-import co.tpaga.tpagasdk.Network.TpagaAPI;
-import co.tpaga.tpagasdk.Tools.GenericResponse;
-import co.tpaga.tpagasdk.Tools.TpagaTools;
+import co.tpaga.android.Entities.CreditCard;
+import co.tpaga.android.FragmentCreditCard.AddCreditCardPresenter;
+import co.tpaga.android.FragmentCreditCard.AddCreditCardView;
+import co.tpaga.android.Network.TpagaAPI;
+import co.tpaga.android.Tools.GenericResponse;
+import co.tpaga.android.Tools.TpagaTools;
 import io.card.payment.CardIOActivity;
-import io.card.payment.CreditCard;
 import okhttp3.ResponseBody;
 
 import static com.google.common.base.Preconditions.checkNotNull;
@@ -31,37 +31,48 @@ public class Tpaga {
         tpagaApi = new TpagaAPI(tpagaPublicApiKey, environment);
     }
 
-    public static void startScanCreditCard(Activity context) {
-        Intent scanIntent = new Intent(context, CardIOActivity.class);
+    public static void startScanCreditCard(Activity activity) {
+        Intent scanIntent = new Intent(activity, CardIOActivity.class);
         scanIntent.putExtra(CardIOActivity.EXTRA_USE_CARDIO_LOGO, true);
         scanIntent.putExtra(CardIOActivity.EXTRA_REQUIRE_CVV, true);
         scanIntent.putExtra(CardIOActivity.EXTRA_REQUIRE_EXPIRY, true);
         scanIntent.putExtra(CardIOActivity.EXTRA_SCAN_EXPIRY, true);
         scanIntent.putExtra(CardIOActivity.EXTRA_SUPPRESS_MANUAL_ENTRY, true);
         scanIntent.putExtra(CardIOActivity.EXTRA_SUPPRESS_CONFIRMATION, true);
-        context.startActivityForResult(scanIntent, SCAN_CREDIT_CARD);
+        activity.startActivityForResult(scanIntent, SCAN_CREDIT_CARD);
     }
 
-    public static boolean validateCreditCardData(CreditCardTpaga creditCard) {
+    public static void startScanCreditCard(Fragment fragment) {
+        Intent scanIntent = new Intent(fragment.getActivity(), CardIOActivity.class);
+        scanIntent.putExtra(CardIOActivity.EXTRA_USE_CARDIO_LOGO, true);
+        scanIntent.putExtra(CardIOActivity.EXTRA_REQUIRE_CVV, true);
+        scanIntent.putExtra(CardIOActivity.EXTRA_REQUIRE_EXPIRY, true);
+        scanIntent.putExtra(CardIOActivity.EXTRA_SCAN_EXPIRY, true);
+        scanIntent.putExtra(CardIOActivity.EXTRA_SUPPRESS_MANUAL_ENTRY, true);
+        scanIntent.putExtra(CardIOActivity.EXTRA_SUPPRESS_CONFIRMATION, true);
+        fragment.startActivityForResult(scanIntent, SCAN_CREDIT_CARD);
+    }
+
+    public static boolean validateCreditCardData(CreditCard creditCard) {
         return TpagaTools.isValidCardNumber(creditCard.primaryAccountNumber.replaceAll("\\s+", ""))
                 && TpagaTools.isValidExpirationDate(creditCard.expirationYear, creditCard.expirationMonth)
                 && !creditCard.cvc.isEmpty()
                 && TpagaTools.isNameValid(creditCard.cardHolderName);
     }
 
-    public static CreditCardTpaga onActivityResultScanCreditCard(Intent data) {
+    public static CreditCard onActivityResultScanCreditCard(Intent data) {
         try {
             if (data != null || data.hasExtra(CardIOActivity.EXTRA_SCAN_RESULT)) {
-                CreditCard scanResult = data.getParcelableExtra(CardIOActivity.EXTRA_SCAN_RESULT);
+                io.card.payment.CreditCard scanResult = data.getParcelableExtra(CardIOActivity.EXTRA_SCAN_RESULT);
 
-                CreditCardTpaga creditCardTpaga = CreditCardTpaga.create(
+                CreditCard creditCard = CreditCard.create(
                         scanResult.getFormattedCardNumber(),
                         (scanResult.isExpiryValid()) ? scanResult.expiryYear + "" : "",
                         (scanResult.isExpiryValid()) ? scanResult.expiryMonth + "" : "",
                         (scanResult.cvv != null) ? scanResult.cvv : "",
                         "");
 
-                return creditCardTpaga;
+                return creditCard;
             }
             return null;
         } catch (Exception e) {

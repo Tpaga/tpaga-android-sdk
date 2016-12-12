@@ -1,6 +1,6 @@
-package co.tpaga.tpagasdk.Network;
+package co.tpaga.android.Network;
 
-import co.tpaga.tpagasdk.BuildConfig;
+import co.tpaga.android.BuildConfig;
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;

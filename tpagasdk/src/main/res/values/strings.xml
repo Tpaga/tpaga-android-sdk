@@ -11,6 +11,7 @@
     <string name="scan_cc">Scan card</string>
 
     <string name="fail_validate_cc">Verify card number</string>
+    <string name="fail_validate_expiration_date">Verify expiration date</string>
     <string name="fail_validate_month_cc">Verify month</string>
     <string name="fail_validate_year_cc">Verify year</string>
     <string name="fail_validate_cvc_cc">Verify cvv</string>

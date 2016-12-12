@@ -1,8 +1,8 @@
-package co.tpaga.tpagasdk.Tools;
+package co.tpaga.android.Tools;
 
 import android.support.annotation.StringRes;
 
-import co.tpaga.tpagasdk.Entities.CreditCardResponseTpaga;
+import co.tpaga.android.Entities.CreditCardResponse;
 
 public class StatusResponse {
 
@@ -11,7 +11,7 @@ public class StatusResponse {
     public String responseMessage;
 
 
-    public static StatusResponse create(CreditCardResponseTpaga.Error error) {
+    public static StatusResponse create(CreditCardResponse.Error error) {
         StatusResponse statusResponse = new StatusResponse();
         statusResponse.responseCode = 1;
         statusResponse.responseMessage = error.errors.get(0).message;

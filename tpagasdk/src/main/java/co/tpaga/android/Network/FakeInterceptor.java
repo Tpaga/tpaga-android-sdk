@@ -1,4 +1,4 @@
-package co.tpaga.tpagasdk.Network;
+package co.tpaga.android.Network;
 
 import java.io.IOException;
 import java.net.URI;

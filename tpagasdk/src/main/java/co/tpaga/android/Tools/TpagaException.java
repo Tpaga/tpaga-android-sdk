@@ -1,4 +1,4 @@
-package co.tpaga.tpagasdk.Tools;
+package co.tpaga.android.Tools;
 
 public class TpagaException extends Exception {
 

@@ -1,4 +1,4 @@
-package co.tpaga.tpagasdk.Tools;
+package co.tpaga.android.Tools;
 
 import android.content.Context;
 import android.text.TextUtils;
@@ -6,32 +6,38 @@ import android.widget.Toast;
 
 import org.apache.commons.validator.routines.CreditCardValidator;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class TpagaTools {
 
 
-    public static boolean isValidCardNumber(String carnum) {
+    public static boolean isValidCardNumber(String cardNumber) {
         CreditCardValidator ccv = new CreditCardValidator(CreditCardValidator.MASTERCARD + CreditCardValidator.VISA +
                 CreditCardValidator.AMEX + CreditCardValidator.DINERS);
-        if (TextUtils.isEmpty(carnum)) return false;
-        return ccv.isValid(carnum);
+        if (TextUtils.isEmpty(cardNumber)) return false;
+        return ccv.isValid(cardNumber);
     }
 
     public static boolean isValidExpirationDate(String year, String month) {
-        return isValidMonth(month);
-
+        if (year.isEmpty() || month.isEmpty())
+            return false;
+        try {
+            String input = month + "/" + year; // for example
+            SimpleDateFormat simpleDateFormat = new SimpleDateFormat("MM/yyyy");
+            simpleDateFormat.setLenient(false);
+            Date expiry = simpleDateFormat.parse(input);
+            return !expiry.before(new Date());
+        } catch (ParseException e) {
+            e.printStackTrace();
+            return false;
+        }
     }
-
-    public static boolean isValidMonth(String s) {
-        if (TextUtils.isEmpty(s)) return false;
-        int month = Integer.parseInt(s);
-        return ((month > 0 && month < 13) ? true : false);
-    }
-
 
     public static boolean isNameValid(CharSequence name) {
         if (TextUtils.isEmpty(name)) return false;

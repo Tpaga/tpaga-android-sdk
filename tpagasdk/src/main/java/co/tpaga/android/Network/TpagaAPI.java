@@ -1,13 +1,13 @@
-package co.tpaga.tpagasdk.Network;
+package co.tpaga.android.Network;
 
 import java.io.IOException;
 import java.lang.annotation.Annotation;
 
-import co.tpaga.tpagasdk.BuildConfig;
-import co.tpaga.tpagasdk.Entities.CreditCardResponseTpaga;
-import co.tpaga.tpagasdk.Entities.CreditCardTpaga;
-import co.tpaga.tpagasdk.Tools.GenericResponse;
-import co.tpaga.tpagasdk.Tools.StatusResponse;
+import co.tpaga.android.BuildConfig;
+import co.tpaga.android.Entities.CreditCardResponse;
+import co.tpaga.android.Entities.CreditCard;
+import co.tpaga.android.Tools.GenericResponse;
+import co.tpaga.android.Tools.StatusResponse;
 import okhttp3.OkHttpClient;
 import okhttp3.ResponseBody;
 import okhttp3.logging.HttpLoggingInterceptor;
@@ -55,13 +55,13 @@ public class TpagaAPI {
         return retrofit;
     }
 
-    public Call<CreditCardResponseTpaga> addCreditCard(CreditCardTpaga creditCard) {
+    public Call<CreditCardResponse> addCreditCard(CreditCard creditCard) {
         return mManageCreditCard.addCreditCardPost(creditCard);
     }
 
     public GenericResponse errorResponse(ResponseBody errorBody) {
         try {
-            CreditCardResponseTpaga.Error error = (CreditCardResponseTpaga.Error) getAuthAdapter().responseBodyConverter(CreditCardResponseTpaga.Error.class, new Annotation[0]).convert(errorBody);
+            CreditCardResponse.Error error = (CreditCardResponse.Error) getAuthAdapter().responseBodyConverter(CreditCardResponse.Error.class, new Annotation[0]).convert(errorBody);
             return GenericResponse.create(StatusResponse.create(error));
         } catch (IOException e) {
             throw new IllegalArgumentException("error body can't be serialized");
@@ -71,6 +71,6 @@ public class TpagaAPI {
 
     private interface ManageCreditCard {
         @POST("tokenize/credit_card")
-        Call<CreditCardResponseTpaga> addCreditCardPost(@Body CreditCardTpaga appInfo);
+        Call<CreditCardResponse> addCreditCardPost(@Body CreditCard appInfo);
     }
 }
