@@ -1,11 +1,11 @@
-## Tpaga android-sdk
+## tpaga-android-sdk
 
 Tpaga SDK allows your application connect with the Tpaga API to create new tokens which represents a credit cards. Have two options to generate credit card tokens. The first include a fragment where you can to write the credit card data or scan it. 
 The other option is to make the request to the Tpaga API. Both return a credit card token. You can show a implementation example here [Example Tpaga SDK](https://bitbucket.org/tpaga/tpaga-sdk-android-sample-app)  
 
 ### Latest release
 
-The most recent release is tpagasdk 1.0.9, released December 7, 2016 
+The most recent release is tpaga-sdk 1.1.2, released December 12, 2016 
 
 ### Get Started
 
@@ -15,8 +15,8 @@ The most recent release is tpagasdk 1.0.9, released December 7, 2016
 ```
 <dependency>
   <groupId>co.tpaga</groupId>
-  <artifactId>tpagasdk</artifactId>
-  <version>1.0.5</version>
+  <artifactId>android</artifactId>
+  <version>1.1.2</version>
   <type>pom</type>
 </dependency>
 ```
@@ -24,22 +24,22 @@ The most recent release is tpagasdk 1.0.9, released December 7, 2016
 - Using Gradle
 ```
 dependencies{
-  compile 'co.tpaga:tpagasdk:1.0.4'
+  compile 'co.tpaga:android:1.1.2'
 }
 ```
 
 - Using Ivy
 ```
-<dependency org='co.tpaga' name='tpagasdk' rev='1.0.5'>
-  <artifact name='tpagasdk' ext='pom' />
+<dependency org='co.tpaga' name='android' rev='1.1.2'>
+  <artifact name='android' ext='pom' />
 </dependency>
 ```
 
->1. Other option is download and import the module [tpagasdk](https://github.com/AdelaTpaga/android-sdk/tree/master/SampleTpagaSdk/tpagasdk) into your project.
-2. Add `compile project(":tpagasdk")` in your app build.gradle
+>1. Other option is download and import the module [tpaga-sdk](https://bitbucket.org/tpaga/tpaga-android-sdk) into your project.
+2. Add `compile project(":tpaga-sdk")` in your app build.gradle
 ```
 dependencies {
-    compile project(":tpagasdk")
+    compile project(":tpaga-sdk")
  }
 ```
 
@@ -56,14 +56,17 @@ In the Activity or Application file initialize tpagasdk. Set your public key and
 Use your `public_api_key` to initialize. This key is in your dashboard [sandbox](https://sandbox.tpaga.co)/[production](https://api.tpaga.co/). The enviroment can be `TpagaAPI.SANDBOX` OR `TpagaAPI.PRODUCTION`. You must check that the added public_api_key matches the selected environment.
 
 ```
-Tpaga.initialize("public_api_key"), TpagaAPI.SANDBOX);
+Tpaga.initialize("public_api_key", Tpaga.SANDBOX);
 ```
 
-### Add Credit Card
+## Usage
+
+### Add Credit Card (tokenize)
 
 First option is use AddCreditCardFragment to add credit cards
 
 - Add `AddCreditCardFragment` fragment in your activity
+
 ```
 FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
 AddCreditCardFragment mAddCreditCardFragment = new AddCreditCardFragment();
@@ -73,66 +76,45 @@ ft.commitAllowingStateLoss();
 
 - Your activity must implement `AddCreditCardView.UserActionsListener` and override methods.
 ```
-//This method is execute if fields in fragment are correct 
+//This method is execute if fields in fragment are correct and tokenize credit card is successful
 @Override
-public void onResponseSuccessfulOfAddCreditCard(CreditCardWallet creditCardWallet) {
+public void onResponseSuccessTokenizeCreditCard(String creditCardToken) {
     /**
-     * you must send the creditCardWallet.tempCcToken to your server to use in payments
+     * you must send the creditCardToken to your server to use in payments
      */
 }
 
+//This method is called when the request presents a error
 @Override
 public void showError(Throwable t) {
-    Toast.makeText(this, "credit card Throwable error", Toast.LENGTH_LONG).show();
-    t.printStackTrace();
-}
-
-@Override
-public void showError(GenericResponse genericResponse) {
-    showToastError(genericResponse.status);
-}
-
-@Override
-public void showToastError(StatusResponse response) {
-    if (response != null && !response.responseMessage.isEmpty()) {
-        Toast.makeText(this, response.responseMessage, Toast.LENGTH_LONG).show();
+    if (t instanceof TpagaException) { 
+        //.getStatusCode() return the http error
+        ((TpagaException) t).getStatusCode();
     }
 }
 
 @Override
-public CreditCardTpaga getCreditCard() {
+public CreditCard getCreditCard() {
     return mAddCreditCardFragment.getCC();
 }
 ```
 
-- Add `mAddCreditCardFragment.onActivityResult(requestCode, resultCode, data);` In the onActivityResult, this to update fragment when scan card.
-```
-@Override
-protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-    super.onActivityResult(requestCode, resultCode, data);
-    mAddCreditCardFragment.onActivityResult(requestCode, resultCode, data);
-}
-```
-
 To customize AddCreditCardFragment you can overwrite the next styles
+
 ```
-<style name="button_red" parent="Theme.AppCompat.Light"></style>
-<style name="title_style"></style>
-<style name="default_edit_text_style" parent="@style/Base.Widget.AppCompat.EditText"></style>
+<style name="Base.Button" parent="Theme.AppCompat.Light"></style>
+<style name="Base.TextInputLayout" parent="Theme.AppCompat.Light"></style>
+<style name="Base.EditText" parent="@style/Base.Widget.AppCompat.EditText"></style>
+<style name="Tittle"></style>
 ```
 
 Second option without AddCreditCardFragment
 
-- In your activity create a `AddCreditCardPresenter` instance;
-```
-AddCreditCardPresenter mAddCreditCardPresenter = new AddCreditCardPresenter(this, Tpaga.tpagaApi);
-```
-
-- Implements `AddCreditCardView.UserActionsListener` and override methods
+- Implements `AddCreditCardView.UserActionsListener` and in the getCreditCard() return a new CreditCard with data in your view.
 ```
 @Override
-public CreditCardTpaga getCreditCard() {
-    return CreditCardTpaga.create("number", "year", "month", "cvv", "name");
+public CreditCard getCreditCard() {
+    return CreditCard.create("number", "year", "month", "cvv", "name");
 }
 ```
 
