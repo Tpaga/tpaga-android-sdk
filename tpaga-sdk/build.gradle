@@ -31,7 +31,7 @@ dependencies {
 
     //Scan credit card
     compile 'io.card:android-sdk:5.4.0'
-    
+
     //Validate credit card
     compile('commons-validator:commons-validator:1.5.1') {
         exclude group: 'commons-logging', module: 'commons-logging'

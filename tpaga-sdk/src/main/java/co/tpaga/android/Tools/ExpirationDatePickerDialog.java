@@ -45,7 +45,7 @@ public class ExpirationDatePickerDialog extends DialogFragment {
 
         builder.setView(dialog)
                 // Add action buttons
-                .setPositiveButton("ok", new DialogInterface.OnClickListener() {
+                .setPositiveButton("seleccionar", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int id) {
                         listener.onDateSet(null, yearPicker.getValue(), monthPicker.getValue(), 0);
