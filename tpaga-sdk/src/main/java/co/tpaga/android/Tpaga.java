@@ -20,11 +20,12 @@ import static com.google.common.base.Preconditions.checkNotNull;
 public class Tpaga {
 
     /*to select environment*/
-    public static final int SANDBOX = 1000;
-    public static final int PRODUCTION = 2000;
+    public static final int SANDBOX = 0x3e8;
+    public static final int PRODUCTION = 0x7d0;
 
     /*request code for scan card*/
-    public static final int SCAN_CREDIT_CARD = 1126;
+    public static final int SCAN_CREDIT_CARD = 0x466;
+    public static final int SCAN_CREDIT_CARD_OK = 0xca8d14;
 
     @NonNull
     private static TpagaAPI tpagaApi;

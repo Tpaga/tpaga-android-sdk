@@ -1,5 +1,7 @@
 package co.tpaga.android.Network;
 
+import android.util.Log;
+
 import java.io.IOException;
 import java.lang.annotation.Annotation;
 
@@ -20,6 +22,7 @@ import retrofit2.http.POST;
 
 public class TpagaAPI {
 
+    private static final String TAG = "TpagaAPI";
     protected static final String SANDBOX_TPAGA_API_HOST = "https://sandbox.tpaga.co/api/";
     protected static final String PRODUCTION_TPAGA_API_HOST = "https://api.tpaga.co/api/";
 
@@ -30,6 +33,9 @@ public class TpagaAPI {
     public TpagaAPI(String tpagaPublicApiKey, int enviroment) {
         this.tpagaPublicApiKey = tpagaPublicApiKey;
         this.enviroment = enviroment;
+        if (enviroment == Tpaga.SANDBOX) {
+            Log.w(TAG, "You are using the SANDBOX version of tpaga. Payments in this environment will not be completed.");
+        }
         mManageCreditCard = getAuthAdapter().create(ManageCreditCard.class);
     }
 

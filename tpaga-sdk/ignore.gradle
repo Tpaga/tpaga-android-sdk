@@ -2,8 +2,9 @@
 
 ext {
     repositorySnapshop = System.getenv('REPOSITORY_SNAPSHOTS_BITBUCKET')
-    repositoryReleases = System.getenv('REPOSITORY_RELEASES_BITBUCKET')
+    repositoryReleases = System.getenv('REPOSITORY_RELEASES_GIT')
     authenticationName = System.getenv('AUTHENTICATION_NAME_BITBUCKET')
+    authenticationNameGit = System.getenv('AUTHENTICATION_NAME_GIT')
     authenticationPassword = System.getenv('AUTHENTICATION_PASSWORD_BITBUCKET')
 }
 
@@ -20,12 +21,17 @@ uploadArchives {
     repositories.mavenDeployer {
         pom.groupId = 'co.tpaga'
         pom.artifactId = 'android'
-        pom.version = '1.1.2'
+        pom.version = '1.0.0'
         configuration = configurations.deployerJar
+//        repository(url: repositoryReleases) {
+//            authentication(userName: authenticationName, password: authenticationPassword)
+//        }
         repository(url: repositoryReleases) {
+            authentication(userName: authenticationNameGit, password: authenticationPassword)
+        }
+        snapshotRepository(url: repositorySnapshop) {
             authentication(userName: authenticationName, password: authenticationPassword)
         }
-        snapshotRepository(url: repositorySnapshop)
 
         pom.project {
             packaging 'aar'
@@ -34,13 +40,8 @@ uploadArchives {
 
             name 'android'
             description 'Tpaga SDK for android'
+            url 'https://github.com/Tpaga/tpaga-android-sdk'
 
-//            url POM_URL
-//            scm {
-//                url POM_SCM_URL
-//                connection POM_SCM_CONNECTION
-//                developerConnection POM_SCM_DEV_CONNECTION
-//            }
             licenses {
                 license {
                     name 'The Apache Software License, Version 2.0'
@@ -53,6 +54,12 @@ uploadArchives {
                     name 'Adela Rojas'
                     email 'arojas@tpaga.co'
                 }
+            }
+
+            scm {
+                connection 'https://github.com/Tpaga/tpaga-android-sdk.git'
+                developerConnection 'https://github.com/Tpaga/tpaga-android-sdk.git'
+                url 'https://github.com/Tpaga/tpaga-android-sdk'
             }
         }
     }
