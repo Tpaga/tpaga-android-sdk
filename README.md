@@ -22,9 +22,18 @@ The most recent release is tpaga-sdk 1.0.0, released December 13, 2016
 ```
 
 - Using Gradle
+
 ```
+allprojects {
+    repositories {
+        maven {
+            url "https://raw.github.com/Tpaga/tpaga-android-sdk/releases"
+        }
+    }
+}
+
 dependencies{
-  compile 'co.tpaga:android:1.1.2'
+  compile 'co.tpaga:android:1.0.0'
 }
 ```
 
