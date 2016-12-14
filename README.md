@@ -55,8 +55,6 @@ dependencies {
 2. Add permissions in the manifest
 ```
 <uses-permission android:name="android.permission.INTERNET" />
-<uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
-<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 ```
 
 3. Initialize Tpaga SDK
