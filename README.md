@@ -130,3 +130,12 @@ protected void onActivityResult(int requestCode, int resultCode, Intent data) {
     }
 }
 ```
+## Contact
+
+Tpaga Support / soporte@tpaga.co - for personal support at any phase of integration
+
+## License
+
+The Tpaga Android SDK is open source and available under the Apache License. See the LICENSE file for more info.
+
+
