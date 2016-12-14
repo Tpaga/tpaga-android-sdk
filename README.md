@@ -125,7 +125,7 @@ protected void onActivityResult(int requestCode, int resultCode, Intent data) {
     super.onActivityResult(requestCode, resultCode, data);
     switch (requestCode) {
         case Tpaga.SCAN_CREDIT_CARD:
-            if (resultCode == 13274388) {
+            if (resultCode == Tpaga.SCAN_CREDIT_CARD_OK)) {
                 onResultScanCreditCard(Tpaga.onActivityResultScanCreditCard(data));
             }
             break;
