@@ -5,7 +5,7 @@ The other option is to make the request to the Tpaga API. Both return a credit c
 
 ### Latest release
 
-The most recent release is tpaga-sdk 1.1.2, released December 12, 2016 
+The most recent release is tpaga-sdk 1.0.0, released December 13, 2016 
 
 ### Get Started
 
