@@ -23,9 +23,7 @@ uploadArchives {
         pom.artifactId = 'android'
         pom.version = '1.0.0'
         configuration = configurations.deployerJar
-//        repository(url: repositoryReleases) {
-//            authentication(userName: authenticationName, password: authenticationPassword)
-//        }
+        
         repository(url: repositoryReleases) {
             authentication(userName: authenticationNameGit, password: authenticationPassword)
         }
