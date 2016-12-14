@@ -1,7 +1,9 @@
 ## tpaga-android-sdk
 
 Tpaga SDK allows your application connect with the Tpaga API to create new tokens which represents a credit cards. Have two options to generate credit card tokens. The first include a fragment where you can to write the credit card data or scan it. 
-The other option is to make the request to the Tpaga API. Both return a credit card token. You can show a implementation example here [Example Tpaga SDK](https://bitbucket.org/tpaga/tpaga-sdk-android-sample-app)  
+The other option is to make the request to the Tpaga API. Both return a credit card token. You can show a implementation example here [Example Tpaga SDK](https://github.com/Tpaga/tpaga-android-sdk-sample)  
+
+Support 
 
 ### Latest release
 
@@ -44,7 +46,7 @@ dependencies{
 </dependency>
 ```
 
->1. Other option is download and import the module [tpaga-sdk](https://bitbucket.org/tpaga/tpaga-android-sdk) into your project.
+>1. Other option is download and import the module [tpaga-sdk](https://github.com/Tpaga/tpaga-android-sdk/tree/master/tpaga-sdk) into your project.
 2. Add `compile project(":tpaga-sdk")` in your app build.gradle
 ```
 dependencies {
@@ -130,12 +132,13 @@ protected void onActivityResult(int requestCode, int resultCode, Intent data) {
     }
 }
 ```
-## Contact
+## Feedback
 
+[Github issues](https://github.com/Tpaga/tpaga-android-sdk/issues) - for generally applicable issues
 Tpaga Support / soporte@tpaga.co - for personal support at any phase of integration
 
 ## License
 
-The Tpaga Android SDK is open source and available under the Apache License. See the LICENSE file for more info.
+The Tpaga Android SDK is open source and available under the Apache License. See the [LICENSE](https://github.com/Tpaga/tpaga-android-sdk/blob/master/LICENSE) file for more info.
 
 
