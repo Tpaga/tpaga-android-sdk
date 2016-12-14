@@ -16,7 +16,7 @@ The most recent release is tpaga-sdk 1.0.0, released December 13, 2016
 <dependency>
   <groupId>co.tpaga</groupId>
   <artifactId>android</artifactId>
-  <version>1.1.2</version>
+  <version>1.0.0</version>
   <type>pom</type>
 </dependency>
 ```
@@ -39,7 +39,7 @@ dependencies{
 
 - Using Ivy
 ```
-<dependency org='co.tpaga' name='android' rev='1.1.2'>
+<dependency org='co.tpaga' name='android' rev='1.0.0'>
   <artifact name='android' ext='pom' />
 </dependency>
 ```
