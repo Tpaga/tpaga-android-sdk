@@ -21,9 +21,9 @@ uploadArchives {
     repositories.mavenDeployer {
         pom.groupId = 'co.tpaga'
         pom.artifactId = 'android'
-        pom.version = '1.0.0'
+        pom.version = '1.0.1'
         configuration = configurations.deployerJar
-        
+
         repository(url: repositoryReleases) {
             authentication(userName: authenticationNameGit, password: authenticationPassword)
         }

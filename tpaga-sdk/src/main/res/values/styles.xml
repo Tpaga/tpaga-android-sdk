@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+    <style name="Base.View" parent="Theme.AppCompat.Light"></style>
+
     <style name="Base.Button" parent="Theme.AppCompat.Light"></style>
 
     <style name="Base.TextInputLayout" parent="Theme.AppCompat.Light"></style>
@@ -8,5 +10,5 @@
     <style name="Base.EditText" parent="@style/Base.Widget.AppCompat.EditText"></style>
 
     <style name="Tittle"></style>
-
+    
 </resources>
